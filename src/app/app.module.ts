@@ -21,7 +21,7 @@ import {appRoutes}  from './app.routes';
     FormsModule,
     HttpModule,
     LoyoutModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   exports:[
     RouterModule
