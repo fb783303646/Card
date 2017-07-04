@@ -22,6 +22,7 @@ import {CarService} from './car.service'
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     RouterModule.forRoot(loyoutRoutes),
     SelectModule,
     SplitButtonModule,

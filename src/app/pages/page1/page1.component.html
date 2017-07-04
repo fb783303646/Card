@@ -107,24 +107,29 @@
 		</div>
   </div>
 <div >
-	<p-dataTable [value]="cars">
+	<p-dataTable [value]="cars" [rows]="10" [totalRecords]="totalRecords" [paginator]="true"  >
 		<p-column [style]="{'width':'38px','padding':'10px'}" selectionMode="multiple"></p-column>
 		<p-column field="ICCId" header="ICCID"></p-column>
 		<p-column field="mian" header="主套餐"></p-column>
 		<p-column field="nbomer" header="业务号码"></p-column>
 		<p-column field="liulang" header="本月可用流量">
 			<ng-template let-cols let-car="rowData" pTemplate="body">
-				<span>{{car[cols.field] }}M</span>
+				<p style="text-align: center;margin:0;">{{car[cols.field] }}M</p>
 			</ng-template>
 		</p-column>
 		<p-column field="yiyong" header="本月已用流量">
 			<ng-template let-cols let-car="rowData" pTemplate="body">
-				<span>{{car[cols.field] }}M</span>
+				<p style="text-align: center;margin:0;">{{car[cols.field] }}M</p>
 			</ng-template>
 		</p-column>
 		<p-column field="status" header="状态"></p-column>
 		<p-column field="time" header="到期时间"></p-column>
-		<p-column field="beizhu" header="备注"></p-column>
+		<p-column field="beizhu" header="备注">
+			<ng-template let-cols let-carh="rowData" pTemplate="body">
+				<!--<p style="text-align: center;margin:0;" *ngIf="carh[cols.field]>5"  >{{carh[cols.field] }}M</p>-->
+				<p style="text-align: center;margin:0;" *ngIf="carh[cols.field]>5 && carh[cols.field]<10"  >{{carh[cols.field] }}</p>
+			</ng-template>
+		</p-column>
 		<p-column styleClass="col-button" [style]="{'width':'438px'}">
 			<ng-template pTemplate="header">
 			更多
@@ -138,8 +143,6 @@
 			</ng-template>
 		</p-column>
 	</p-dataTable>
-
-	<p-paginator rows="10" totalRecords="30" pageLinkSize="2" [rowsPerPageOptions]="[1,2,3]"></p-paginator>
 
 </div>
   
