@@ -1,0 +1,164 @@
+<div class="row " style="padding:15px 0;">
+	<div class="col-md-6">
+		<h5 >更多详情>></h5>
+	</div>
+	<div class="col-md-6" style="text-align: right;">
+		<span class="craret-down ">收起详情<span class="fa-caret-down fa "></span></span>
+	</div>
+</div>
+ <div class="row placeholders">
+    <div class="col-xs-6 col-md-4 ">
+      <div class="box-boder modeo">	
+          <img src="assets/logo.png">
+          <h4>125642张</h4>
+          <p class="text-muted">卡片总数</p>
+          <p class="text-muted date-end">*注：本月到期卡片数量12张</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-8">
+     <div class="box-boder">
+     	  <ul class="tips-box">
+     	  	<li><em></em><span>可激活状态</span><i>555张</i></li>	
+     	  	<li><em></em><span>已激活状态</span><i>555张</i></li>	
+     	  </ul>		
+          <div id="main" style="height:180px;"></div>
+          <ul class="tips-box tips-box2">
+     	  	<li><em></em><span>停用状态</span><i>555张</i></li>	
+     	  	<li><em></em><span>作废状态</span><i>555张</i></li>	
+     	  	<li><em></em><span>无状态</span><i>555张</i></li>	
+     	  </ul>	
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="padding-top:15px;">
+  	<div class="col-md-6" >
+  		<div class="form-inline-box">
+			<fieldset>
+				<label >ICCID号段：</label>
+				<input  class="input" type="text" placeholder="输入ICCID号段">
+				<label class="txt-center">至</label>
+				<input class="input" type="text" placeholder="输入ICCID号段">
+			</fieldset>
+			<fieldset>
+				<label >业务号码：</label>
+				<input class="input" type="text" placeholder="输入业务号码">
+				<label class="txt-center">至</label>
+				<input class="input" type="text" placeholder="输入业务号码">
+			</fieldset>
+			<fieldset>
+				<label >IMSI范围：</label>
+				<input class="input" type="text" placeholder="输入IMSI号码">
+				<label class="txt-center">至</label>
+				<input class="input" type="text" placeholder="输入IMSI号码">
+			</fieldset>
+		</div>
+
+  	</div>
+  	<div class="col-md-6">
+  		<div class="form-inline-box">
+			<fieldset>
+				<label >ICCID号码：</label>
+				<input  class="input" type="text" placeholder="输入ICCID号码">
+				<label >卡片状态：</label>
+				<p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"  [style]="{'width':'30%'}" ></p-dropdown>
+			</fieldset>
+			<fieldset>
+				<label >订单号：</label>
+				<input class="input" type="text" placeholder="输入订单号">
+				<label >项目名称：</label>
+				<input class="input" type="text" placeholder="输入项目名称">
+			</fieldset>
+			<fieldset>
+				<label >IMSI号：</label>
+				<input class="input" type="text" placeholder="输入IMSI号">
+				<label >备注：</label>
+				<p-dropdown [options]="cities2" [(ngModel)]="selectedCity2"  [style]="{'width':'30%'}" ></p-dropdown>
+			</fieldset>
+		</div>
+  	</div>
+  	<div class="col-md-6">
+  		<div class="form-inline-box">
+			<fieldset>
+				<label >归属账号：</label>
+				<p-dropdown [options]="cities3" [(ngModel)]="selectedCity3"  [style]="{'width':'30%'}" ></p-dropdown>
+				<label >主套餐</label>
+				<p-dropdown [options]="cities4" [(ngModel)]="selectedCity4"  [style]="{'width':'30%'}" ></p-dropdown>
+			</fieldset>
+		</div>
+  	</div>
+  	<div class="col-md-6">
+  		<div class="form-inline-box">
+			<fieldset>
+				<button type="button" class="btn btn-an btn-yellow" >查询</button>
+				<button type="button" class="btn btn-an btn-green" >刷新</button>
+			</fieldset>
+		</div>
+  	</div>
+  </div>
+  <div class="row" style="padding-bottom: 16px;">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-an btn-green-bule" >续订</button>
+			<button type="button" class="btn btn-an btn-red" >用户解绑</button>
+			<button type="button" class="btn btn-an btn-blue" >卡片划拨</button>
+			<button type="button" class="btn btn-an btn-green">卡片信息编辑</button>
+			<button type="button" class="btn btn-an btn-blue" >导出</button>
+			<button type="button" class="btn btn-an btn-blue" >批量操作</button>
+		</div>
+  </div>
+<div >
+	<p-dataTable [value]="cars">
+		<p-column [style]="{'width':'38px','padding':'10px'}" selectionMode="multiple"></p-column>
+		<p-column field="ICCId" header="ICCID"></p-column>
+		<p-column field="mian" header="主套餐"></p-column>
+		<p-column field="nbomer" header="业务号码"></p-column>
+		<p-column field="liulang" header="本月可用流量">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<span>{{car[cols.field] }}M</span>
+			</ng-template>
+		</p-column>
+		<p-column field="yiyong" header="本月已用流量">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<span>{{car[cols.field] }}M</span>
+			</ng-template>
+		</p-column>
+		<p-column field="status" header="状态"></p-column>
+		<p-column field="time" header="到期时间"></p-column>
+		<p-column field="beizhu" header="备注"></p-column>
+		<p-column styleClass="col-button" [style]="{'width':'438px'}">
+			<ng-template pTemplate="header">
+			更多
+			</ng-template>
+			<ng-template let-car="rowData" pTemplate="body">
+				<button type="button" class="btn btn-an btn-new btn-green" >流量统计</button>
+				<button type="button" class="btn btn-an btn-new btn-green" (click)="showDialog(car)" >套餐详情</button>
+				<button type="button" class="btn btn-an btn-new btn-green" >卡片详情</button>
+				<button type="button" class="btn btn-an btn-new btn-green" >刷新</button>
+				<button type="button" class="btn btn-an btn-new btn-red" >短信收发</button>
+			</ng-template>
+		</p-column>
+	</p-dataTable>
+
+	<p-paginator rows="10" totalRecords="30" pageLinkSize="2" [rowsPerPageOptions]="[1,2,3]"></p-paginator>
+
+</div>
+  
+<p-dialog   [(visible)]="display" modal="modal" width="600" [responsive]="true" >
+	<p-header>
+        Header content here
+    </p-header>
+		<p>{{indexList.ICCId}}</p>
+		<p>{{indexList.beizhu}}</p>
+		<p>{{indexList.liulang}}</p>
+		<p>{{indexList.mian}}</p>
+		<p>{{indexList.status}}</p>
+		<p>{{indexList.time}}</p>
+		<p>{{indexList.yiyong}}</p>
+		<p>{{indexList.nbomer}}</p>
+		<p-footer >
+			<button type="button" pButton  (click)="display=false" label="Yes"></button>
+			<button type="button" pButton  (click)="display=false" label="No"></button>
+		</p-footer>
+</p-dialog>
+  
+
