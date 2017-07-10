@@ -45,8 +45,8 @@
 }
 :host /deep/ .ui-panelmenu .ui-panelmenu-header a:hover{
    text-decoration:none;
-   background-color: #f4d000;
-   border-color:#f4d000;
+   background-color: #0093dd;
+   border-color:#0093dd;
 }
 :host /deep/ .ui-corner-top{
   border-top-left-radius: 0;
@@ -54,8 +54,8 @@
 }
 :host /deep/ .ui-panelmenu .ui-panelmenu-header.ui-state-active, 
 :host /deep/ .ui-panelmenu .ui-panelmenu-header.ui-state-active a{
-  border-color:#f4d000;
-  background-color:#f4d000; 
+  border-color:#0093dd;
+  background-color:#0093dd; 
   text-decoration:none;
 }
 :host /deep/ .ui-widget-content{
@@ -70,7 +70,7 @@
 }
 :host /deep/ .ui-panelmenu .ui-menuitem-link:hover{
   background: #000;
-  color:#f4d000;
+  color:#0093dd;
 }
 
 :host /deep/  .ui-widget-header .ui-state-active,
@@ -79,5 +79,5 @@
 
   border-color: #000;
   background: #000;
-  color: #f4d000;
+  color: #0093dd;
 }

@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import {LoyoutModule} from './loyout/loyout.module'
 import {appRoutes}  from './app.routes';
 
+
 @NgModule({
   declarations: [
     AppComponent,

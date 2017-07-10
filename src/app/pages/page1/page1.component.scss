@@ -30,7 +30,7 @@
   -ms-box-align:center;
   -ms-box-orient: vertical;
   text-align: center;
-  img{padding-bottom: 15px;}
+  img{padding-bottom: 15px;height:57px; }
   .date-end{color: red;}
 }
 
@@ -90,19 +90,19 @@
 
 
 .form-inline-box{
-  fieldset{
-    margin-bottom: 15px;
-    label{max-width: 120px; min-width: 80px; text-align: right;}
-    .one{width: 40px;text-align: center;}
-    .input{padding: 6px;border: 1px solid #ddd;width: 30%;}
-    .btn{border-radius:0;}
+    .input{padding: 6px;border: 1px solid #ddd;width: 30%;border-radius:4px;display: inline-block;vertical-align: middle;}
     .form-control{border-radius:0;}
     .txt-center{text-align:center}
-  }
+    .tabtile{width: 100px;color: #555;}
+    .ul-li{padding-top:15px;}
+    .ul-li:nth-child(1){padding-top:10px;}
+    .ul-li:nth-child(4){padding-bottom:10px;}
 }
-.btn-an{border: 1px solid #ddd;background:none;border-radius:0;}
 
+
+.btn-an{border: 1px solid #ddd;background:none;}
 .btn-new{border-radius: 5px;height: 30px;margin:6px 0;background: #fff;}
+.btn-submit{width:100px;margin-top:15px;float: right;}
 
 .btn-yellow{border: 1px solid #ffc800;color: #ffc800;}
 .btn-green{border: 1px solid #61be63;color: #61be63;}
@@ -110,12 +110,24 @@
 .btn-red{border: 1px solid #db3a1d;color: #db3a1d;}
 .btn-green-bule{border: 1px solid #5dafa3;color: #5dafa3;}
 
+.btn-yellow:hover{border: 1px solid #ffc800;color: #ffc800;background: #ffc800;color: #fff;}
+.btn-green:hover{border: 1px solid #61be63;color: #61be63;background:#61be63;color: #fff;}
+.btn-blue:hover{border: 1px solid #437995;color: #437995;background: #437995; color: #fff;}
+.btn-red:hover{border: 1px solid #db3a1d;color: #db3a1d;background: #db3a1d;color: #fff;}
+.btn-green-bule:hover{border: 1px solid #5dafa3;color: #5dafa3; background: #5dafa3; color: #fff;}
+
+.spanColor-green{color: #61be63;}
+.spanColor-green{color: #61be63;}
+
+:host /deep/  .ui-widget-content{color: gray}
 
 :host /deep/ .ui-datatable tbody > tr.ui-widget-content.ui-state-highlight{
-  background: #5dafa3;
+  background: #eee;
+  color: #333;
 }
-:host /deep/  .ui-chkbox-box.ui-state-active, .ui-radiobutton-box.ui-state-active{
-   background: #5dafa3;
+:host /deep/  .ui-chkbox-box.ui-state-active {
+   background: #eee;
+   color: #333;
    border:1px solid #c0c0c0;
 } 
 
@@ -127,7 +139,31 @@
 :host /deep/ .ui-dropdown .ui-dropdown-trigger .fa{
   margin-top:.8em;
 }
-:host /deep/ .ui-corner-all{
-  border-radius: 0;
-}
+
 .craret-down{display: inline-block;padding:10px;background: #c0c0c0; cursor:pointer}
+:host /deep/ .ui-overlaypanel{left:0 !important;top:36px !important;}
+
+
+.center-p{text-align: center;margin:0;}
+.center-p span{height:30px;font-size:15px;line-height:30px;cursor: pointer}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active{
+    background: #0093dd;
+    border-color: #0093dd;
+}
+.text-box{margin-top: 20px;}
+:host /deep/ .ui-growl{
+  position: fixed;
+    right: 16px;
+    top: 62px;
+}
+
+.input-box{
+  border:1px solid #ddd;padding:15px;border-radius: 4px;
+   span{width: 48%;display: inline-block;line-height: 30px;}
+  }
+.total-nmber{padding-top: 15px;}
+.popup-box{
+  .col{line-height: 30px;}
+}
+:host /deep/ .ui-dialog-footer{text-align: right;}

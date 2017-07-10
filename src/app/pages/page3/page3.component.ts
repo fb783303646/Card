@@ -1,15 +1,16 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import * as echarts  from 'echarts'
 import {CarService} from '../../loyout/car.service'
 
 @Component({
-  selector: 'app-page2',
-  templateUrl: './page2.component.html',
-  styleUrls: ['./page2.component.scss']
+  selector: 'app-page3',
+  templateUrl: './page3.component.html',
+  styleUrls: ['./page3.component.scss']
 })
-export class Page2Component implements OnInit {
+export class Page3Component implements OnInit {
 
-  cities1=[];
+cities1=[];
   cities2=[];
   cities3=[];
   cities4=[];
@@ -145,7 +146,7 @@ export class Page2Component implements OnInit {
 
     showDialog(e) {
         this.display = true;
-		    this.indexList = e;
+		this.indexList = e;
     }
 
 	msgs;
@@ -253,7 +254,5 @@ export class Page2Component implements OnInit {
 		}
 		
 	}
-
-   
 
 }

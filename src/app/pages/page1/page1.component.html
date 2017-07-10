@@ -1,9 +1,6 @@
 <div class="row " style="padding:15px 0;">
 	<div class="col-md-6">
-		<h5 >更多详情>></h5>
-	</div>
-	<div class="col-md-6" style="text-align: right;">
-		<span class="craret-down ">收起详情<span class="fa-caret-down fa "></span></span>
+		<h5 >更多详情></h5>
 	</div>
 </div>
  <div class="row placeholders">
@@ -31,137 +28,198 @@
     </div>
   </div>
 
-  <div class="row" style="padding-top:15px;">
-  	<div class="col-md-6" >
-  		<div class="form-inline-box">
-			<fieldset>
-				<label >ICCID号段：</label>
-				<input  class="input" type="text" placeholder="输入ICCID号段">
-				<label class="txt-center">至</label>
-				<input class="input" type="text" placeholder="输入ICCID号段">
-			</fieldset>
-			<fieldset>
-				<label >业务号码：</label>
-				<input class="input" type="text" placeholder="输入业务号码">
-				<label class="txt-center">至</label>
-				<input class="input" type="text" placeholder="输入业务号码">
-			</fieldset>
-			<fieldset>
-				<label >IMSI范围：</label>
-				<input class="input" type="text" placeholder="输入IMSI号码">
-				<label class="txt-center">至</label>
-				<input class="input" type="text" placeholder="输入IMSI号码">
-			</fieldset>
+
+  <div class="row" style="padding-bottom: 16px;padding-top:16px;">
+	  	<div class="col-md-6">
+			<div class="form-inline-box">
+					<input  class="input" type="text" placeholder="输入ICCID号码" [(ngModel)]="searchdata" >
+					<div  style="position:relative;display:inline-block;" >
+						<div class="btn btn-an"  (click)="op1.toggle($event)">筛选 <span class="caret"></span></div>
+						<p-overlayPanel #op1 [style]="{'width':'360px'}" >
+							<div class="ul-li">
+								<label  class="tabtile">卡片状态:</label>
+								<p-dropdown [options]="cities1" [(ngModel)]="selectedCity1" [style]="{'width':'220px'}" ></p-dropdown>
+							</div>
+							<div class="ul-li">
+								<label  class="tabtile">项目名称:</label>
+								<p-dropdown [options]="cities2" [(ngModel)]="selectedCity2" [style]="{'width':'220px'}" ></p-dropdown>
+							</div>
+							<div class="ul-li">
+								<label  class="tabtile">归属账号:</label>
+								<p-dropdown [options]="cities3" [(ngModel)]="selectedCity3" [style]="{'width':'220px'}" ></p-dropdown>
+							</div>
+							<div class="ul-li">
+								<label  class="tabtile">主套餐:</label>
+								<p-dropdown [options]="cities4" [(ngModel)]="selectedCity4" [style]="{'width':'220px'}" ></p-dropdown>
+							</div>
+						</p-overlayPanel>
+					</div>
+					<span  class="btn btn-an btn-green-bule"(click)="addsearch()">查询</span>
+					<span  class="btn btn-an btn-green" (click)="addData()" >刷新</span>
+			</div>
+		</div>
+		<div class="col-md-6" style="text-align: right;">
+			<span class="btn btn-an btn-red" (click)="SendSms()" >短信收发</span>
+			<span class="btn btn-an btn-green-bule" >续订</span>
+			<span class="btn btn-an btn-red" (click)="Unbundlingfu()">用户解绑</span>
+			<span class="btn btn-an btn-blue" (click)="transferfn()">卡片划拨</span>
+			<span class="btn btn-an btn-green" (click)="editfu()" >卡片信息编辑</span>
+			<span class="btn btn-an btn-blue" (click)="dt.exportCSV()" >导出</span>
+			<span class="btn btn-an btn-blue" >批量操作</span>
 		</div>
 
-  	</div>
-  	<div class="col-md-6">
-  		<div class="form-inline-box">
-			<fieldset>
-				<label >ICCID号码：</label>
-				<input  class="input" type="text" placeholder="输入ICCID号码">
-				<label >卡片状态：</label>
-				<p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"  [style]="{'width':'30%'}" ></p-dropdown>
-			</fieldset>
-			<fieldset>
-				<label >订单号：</label>
-				<input class="input" type="text" placeholder="输入订单号">
-				<label >项目名称：</label>
-				<input class="input" type="text" placeholder="输入项目名称">
-			</fieldset>
-			<fieldset>
-				<label >IMSI号：</label>
-				<input class="input" type="text" placeholder="输入IMSI号">
-				<label >备注：</label>
-				<p-dropdown [options]="cities2" [(ngModel)]="selectedCity2"  [style]="{'width':'30%'}" ></p-dropdown>
-			</fieldset>
-		</div>
-  	</div>
-  	<div class="col-md-6">
-  		<div class="form-inline-box">
-			<fieldset>
-				<label >归属账号：</label>
-				<p-dropdown [options]="cities3" [(ngModel)]="selectedCity3"  [style]="{'width':'30%'}" ></p-dropdown>
-				<label >主套餐</label>
-				<p-dropdown [options]="cities4" [(ngModel)]="selectedCity4"  [style]="{'width':'30%'}" ></p-dropdown>
-			</fieldset>
-		</div>
-  	</div>
-  	<div class="col-md-6">
-  		<div class="form-inline-box">
-			<fieldset>
-				<button type="button" class="btn btn-an btn-yellow" >查询</button>
-				<button type="button" class="btn btn-an btn-green" >刷新</button>
-			</fieldset>
-		</div>
-  	</div>
   </div>
-  <div class="row" style="padding-bottom: 16px;">
-		<div class="col-md-12">
-			<button type="button" class="btn btn-an btn-green-bule" >续订</button>
-			<button type="button" class="btn btn-an btn-red" >用户解绑</button>
-			<button type="button" class="btn btn-an btn-blue" >卡片划拨</button>
-			<button type="button" class="btn btn-an btn-green">卡片信息编辑</button>
-			<button type="button" class="btn btn-an btn-blue" >导出</button>
-			<button type="button" class="btn btn-an btn-blue" >批量操作</button>
-		</div>
-  </div>
-<div >
-	<p-dataTable [value]="cars" [rows]="10" [totalRecords]="totalRecords" [paginator]="true"  >
+<div>
+	<p-dataTable #dt exportFilename="selectedCars"  [(value)]="cars"  [rows]="10" [totalRecords]="totalRecords" [(selection)]="selectedCars"  [paginator]="true" [headerCheckboxToggleAllPages]="true"   >
+		
 		<p-column [style]="{'width':'38px','padding':'10px'}" selectionMode="multiple"></p-column>
 		<p-column field="ICCId" header="ICCID"></p-column>
 		<p-column field="mian" header="主套餐"></p-column>
-		<p-column field="nbomer" header="业务号码"></p-column>
+		<p-column field="nbomer" header="业务号码"  ></p-column>
 		<p-column field="liulang" header="本月可用流量">
 			<ng-template let-cols let-car="rowData" pTemplate="body">
-				<p style="text-align: center;margin:0;">{{car[cols.field] }}M</p>
+				<p class="center-p">{{car[cols.field] }}M</p>
 			</ng-template>
 		</p-column>
 		<p-column field="yiyong" header="本月已用流量">
 			<ng-template let-cols let-car="rowData" pTemplate="body">
-				<p style="text-align: center;margin:0;">{{car[cols.field] }}M</p>
+				<p class="center-p">{{car[cols.field] }}M</p>
 			</ng-template>
 		</p-column>
-		<p-column field="status" header="状态"></p-column>
-		<p-column field="time" header="到期时间"></p-column>
-		<p-column field="beizhu" header="备注">
+		<p-column field="status" header="状态">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<p class="center-p">{{car[cols.field] }}</p>
+			</ng-template>
+		</p-column>
+		<p-column field="time" header="到期时间">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<p class="center-p">{{car[cols.field] }}</p>
+			</ng-template>
+		</p-column>
+		<p-column field="beizhu" header="备注"  >
 			<ng-template let-cols let-carh="rowData" pTemplate="body">
-				<!--<p style="text-align: center;margin:0;" *ngIf="carh[cols.field]>5"  >{{carh[cols.field] }}M</p>-->
-				<p style="text-align: center;margin:0;" *ngIf="carh[cols.field]>5 && carh[cols.field]<10"  >{{carh[cols.field] }}</p>
+				<!--<p sclass="center-p" *ngIf="carh[cols.field]>5"  >{{carh[cols.field] }}M</p>-->
+				<p class="center-p" *ngIf="carh[cols.field]>5 && carh[cols.field]<10"  >{{carh[cols.field] }}</p>
 			</ng-template>
 		</p-column>
-		<p-column styleClass="col-button" [style]="{'width':'438px'}">
-			<ng-template pTemplate="header">
-			更多
+		<p-column field="yiyong" header="流量统计">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<p class="center-p" (click)="addFlow(car)" ><span class="glyphicon glyphicon-stats"></span></p>
 			</ng-template>
-			<ng-template let-car="rowData" pTemplate="body">
-				<button type="button" class="btn btn-an btn-new btn-green" >流量统计</button>
-				<button type="button" class="btn btn-an btn-new btn-green" (click)="showDialog(car)" >套餐详情</button>
-				<button type="button" class="btn btn-an btn-new btn-green" >卡片详情</button>
-				<button type="button" class="btn btn-an btn-new btn-green" >刷新</button>
-				<button type="button" class="btn btn-an btn-new btn-red" >短信收发</button>
+		</p-column>
+		
+		<p-column field="yiyong" header="卡片详情">
+			<ng-template let-cols let-car="rowData" pTemplate="body">
+				<p class="center-p" (click)="showDialog(car)" ><span  class="glyphicon glyphicon-search"></span></p>
 			</ng-template>
 		</p-column>
 	</p-dataTable>
 
 </div>
   
-<p-dialog   [(visible)]="display" modal="modal" width="600" [responsive]="true" >
+<p-dialog   [(visible)]="display" modal="modal" width="800" [responsive]="true" >
 	<p-header>
-        Header content here
+       卡片详情
     </p-header>
-		<p>{{indexList.ICCId}}</p>
-		<p>{{indexList.beizhu}}</p>
-		<p>{{indexList.liulang}}</p>
-		<p>{{indexList.mian}}</p>
-		<p>{{indexList.status}}</p>
-		<p>{{indexList.time}}</p>
-		<p>{{indexList.yiyong}}</p>
-		<p>{{indexList.nbomer}}</p>
+		
+		<div class="popup-box">
+			<div class="row">
+				<div class="col col-sm-6">刷新时间：2017-7-10 2:30:34</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">ICCID:{{indexList.ICCId}}</div>
+				<div class="col col-sm-6">订单编号:LYCMP2017042810281971612453</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">业务号码:{{indexList.nbomer}}</div>
+				<div class="col col-sm-6">激活时间:{{indexList.time}}</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">卡片尺寸:贴片5*6</div>
+				<div class="col col-sm-6">流量共享:独享</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">主套餐:{{indexList.mian}}</div>
+				<div class="col col-sm-6">开卡方式:插卡激活</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">本月可用量:30M</div>
+				<div class="col col-sm-6">用户绑定信息:</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">本月已用量:0M</div>
+				<div class="col col-sm-6">卡片状态:{{indexList.status}}</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">流量所占百分比:0%</div>
+				<div class="col col-sm-6">IMSI:460040126037296</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">本月短信可用量:10</div>
+				<div class="col col-sm-6">本月短信已用量:0</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">备注:{{indexList.beizhu}}</div>
+				<div class="col col-sm-6"> 卡片归属:深圳市微科通讯设备有限公司[13603012337]</div>
+			</div>
+			<div class="row">
+				<div class="col col-sm-6">项目名称:33333333</div>
+			</div>
+		</div>
+
 		<p-footer >
-			<button type="button" pButton  (click)="display=false" label="Yes"></button>
-			<button type="button" pButton  (click)="display=false" label="No"></button>
+			<span  class="btn btn-an btn-green-bule" (click)="display=false" style="width:100px; margin:10px 10px 10px 0; ">确定</span>
 		</p-footer>
 </p-dialog>
+
+<p-dialog   [(visible)]="dis" modal="modal" width="600" [responsive]="true" >
+	<p-header>发送短信</p-header>
+	<input  type="text" size="63" pInputText  [(ngModel)]="PhoneNumber"  />
+	<span  class="btn btn-an btn-green-bule" (click)="addsearch()" style="margin-left:20px">查询</span>
+	<textarea pInputTextarea rows="6" cols="75" class="text-box" placeholder="输入发送短信内容" ></textarea>
+	<span  class="btn btn-an btn-green-bule" (click)="SendSuccess()" style="width:100px;margin-top:15px;">发送</span>
+</p-dialog>
+
+
+<p-dialog   [(visible)]="isflow" modal="modal" width="800" [responsive]="true" >
+	<p-header>流量统计</p-header>
+	<div id="EchartId" style="height:300px;width:770px" ></div>
+</p-dialog>
+
+<p-dialog   [(visible)]="ispopup" modal="modal" width="600" [responsive]="true" >
+	<p-header>修改备注</p-header>
+	<p>请确认已选中的卡片</p>
+	<div class="input-box">
+		<span *ngFor="let item of kaNmbers">{{item}}</span>
+	</div>
+	<p class="total-nmber">共选择{{kaNmbers.length}}个</p>
+	<textarea pInputTextarea rows="6" cols="75" class="text-box" placeholder="请输入新的备注内容" [(ngModel)]="Remarks"  ></textarea>
+	<span  class="btn btn-an btn-green-bule btn-submit" (click)="editfuSubmit()" >提交</span>
+</p-dialog>
+
+<p-dialog   [(visible)]="istransfer" modal="modal" width="600" [responsive]="true" >
+	<p-header>卡片划拨</p-header>
+	<h5>请选择划拨用户</h5>
+	<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5" [style]="{'width':'100%'}" ></p-dropdown>
+	<p style="padding-top:10px;">请确认已选中的卡片</p>
+	<div class="input-box">
+		<span *ngFor="let item of kaNmbers">{{item}}</span>
+	</div>
+	<p class="total-nmber">共选择{{kaNmbers.length}}个</p>
+	<span  class="btn btn-an btn-green-bule btn-submit" (click)="SendSuccess()" >提交</span>
+</p-dialog>
+
+<p-dialog   [(visible)]="Unbundling" modal="modal" width="600" [responsive]="true" >
+	<p-header>解绑</p-header>
+	<h5>请确认即将解除以下卡片的个人用户绑定</h5>
+	<div class="input-box">
+		<span *ngFor="let item of kaNmbers">{{item}}</span>
+	</div>
+	<p class="total-nmber">共选择{{kaNmbers.length}}个</p>
+	<span  class="btn btn-an btn-green-bule btn-submit" (click)="SendSuccess()" >提交</span>
+</p-dialog>
+
+
+<p-growl [(value)]="msgs" life='5000' ></p-growl>
   
 
