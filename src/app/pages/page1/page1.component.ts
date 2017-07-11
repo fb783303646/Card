@@ -10,6 +10,18 @@ import {CarService} from '../../loyout/car.service'
   styleUrls: ['./page1.component.scss']
 })
 export class Page1Component implements OnInit {
+
+	data=[];
+
+	tatol:number;
+	DueDate:number;
+
+	Activation:number=0;
+	Activated:number=0;
+	Disable:number=0;
+	invalid:number=0;
+	Stateless:number=0;
+
 	cities1=[];
 	cities2=[];
 	cities3=[];
@@ -38,6 +50,7 @@ export class Page1Component implements OnInit {
 		beizhu:""
 	};
 
+	tatolCars:any =[];
 	cars:any =[]
 	selectedCars=[];
 	searchdata;  
@@ -48,6 +61,7 @@ export class Page1Component implements OnInit {
 	msgs;
 	PhoneNumber:string;
 
+	
 
   constructor(private carService: CarService) { }
   
@@ -77,9 +91,38 @@ export class Page1Component implements OnInit {
 		{label:'QWE[123QWE]', value:{id:3, name: 'QWE[123QWE]', code: 'LDN'}},
 	] 
 
-  	const myChart = echarts.init(document.getElementById('main'));
+  	
     // 指定图表的配置项和数据
-    const option = {
+	
+    // 使用刚指定的配置项和数据显示图表。
+    this.addData();
+
+  }
+
+    addData(){
+    	this.carService.getCarsSmall().then(cars => {
+			this.cars = cars;
+			this.tatolCars = cars;
+			this.getNumber();
+		});
+		
+    }
+
+	getNumber(){
+		const myChart = echarts.init(document.getElementById('main'));
+		this.tatol		=this.tatolCars.length;
+		//this.DueDate	=this.tatolCars.length;
+		let len = this.tatol; 
+		let status = this.tatolCars.status;
+		for(let i=0;i<len;i++){
+			if(this.tatolCars[i].status=="2") this.Activation++	
+			if(this.tatolCars[i].status=="3") this.Activated++
+			if(this.tatolCars[i].status=="4") this.Disable++
+			if(this.tatolCars[i].status=="5") this.invalid++
+			if(this.tatolCars[i].status=="6") this.Stateless++
+		}
+
+		var option = {
 		    tooltip: {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -102,29 +145,20 @@ export class Page1Component implements OnInit {
 		                    show: false
 		                }
 		            },
-		            data:[
-		                {value:335, name:'直接访问'},
-		                {value:110, name:'邮件营销'},
-		                {value:116, name:'联盟广告'},
-		                {value:150, name:'视频广告'},
-		                {value:1548, name:'搜索引擎'}
-		            ]
+		            data:[	
+						{value:this.Activation, name:'直接访问'},
+						{value:this.Activated, name:'邮件营销'},
+						{value:this.Disable, name:'联盟广告'},
+						{value:this.invalid, name:'视频广告'},
+						{value:this.Stateless, name:'搜索引擎'}
+					]
 		        }
 		    ]
     };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-    this.addData();
-
-  }
-
-    addData(){
-    	this.carService.getCarsSmall().then(cars => this.cars = cars);
-    }
+		 myChart.setOption(option);	
+	}
 
 	async addsearch(){
-
 		if(this.searchdata != undefined){
 			this.cars = await this.carService.getCarsSmall(this.searchdata,this.selectedCity1);
 		}
@@ -195,7 +229,6 @@ export class Page1Component implements OnInit {
 		this.isflow = true;
 		const myChart = echarts.init(document.getElementById('EchartId'));
 		myChart.setOption(this.options);
-		
 	}
 
 	addKanmber(){
@@ -217,7 +250,6 @@ export class Page1Component implements OnInit {
 	editfuSubmit(){
 		this.selectedCars=[];
 		this.ispopup = false;
-
 	}
 	transferfn(){
 		if(this.selectedCars!=undefined && this.selectedCars.length>=1){

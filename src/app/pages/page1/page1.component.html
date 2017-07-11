@@ -7,7 +7,7 @@
     <div class="col-xs-6 col-md-4 ">
       <div class="box-boder modeo">	
           <img src="assets/logo.png">
-          <h4>125642张</h4>
+          <h4>{{tatol}}张</h4>
           <p class="text-muted">卡片总数</p>
           <p class="text-muted date-end">*注：本月到期卡片数量12张</p>
       </div>
@@ -15,14 +15,14 @@
     <div class="col-xs-12 col-md-8">
      <div class="box-boder">
      	  <ul class="tips-box">
-     	  	<li><em></em><span>可激活状态</span><i>555张</i></li>	
-     	  	<li><em></em><span>已激活状态</span><i>555张</i></li>	
+     	  	<li><em></em><span>可激活状态</span><i>{{Activation}}张</i></li>	
+     	  	<li><em></em><span>已激活状态</span><i>{{Activated}}张</i></li>	
      	  </ul>		
           <div id="main" style="height:180px;"></div>
           <ul class="tips-box tips-box2">
-     	  	<li><em></em><span>停用状态</span><i>555张</i></li>	
-     	  	<li><em></em><span>作废状态</span><i>555张</i></li>	
-     	  	<li><em></em><span>无状态</span><i>555张</i></li>	
+     	  	<li><em></em><span>停用状态</span><i>{{Disable}}张</i></li>	
+     	  	<li><em></em><span>作废状态</span><i>{{invalid}}张</i></li>	
+     	  	<li><em></em><span>无状态</span><i>{{Stateless}}张</i></li>	
      	  </ul>	
       </div>
     </div>
@@ -32,7 +32,7 @@
   <div class="row" style="padding-bottom: 16px;padding-top:16px;">
 	  	<div class="col-md-6">
 			<div class="form-inline-box">
-					<input  class="input" type="text" placeholder="输入ICCID号码" [(ngModel)]="searchdata" >
+					<input  class="input" type="text" placeholder="输入ICCID号码" [(ngModel)]="searchdata" (keyup.enter)="addsearch()"  >
 					<div  style="position:relative;display:inline-block;" >
 						<div class="btn btn-an"  (click)="op1.toggle($event)">筛选 <span class="caret"></span></div>
 						<p-overlayPanel #op1 [style]="{'width':'360px'}" >
@@ -54,7 +54,7 @@
 							</div>
 						</p-overlayPanel>
 					</div>
-					<span  class="btn btn-an btn-green-bule"(click)="addsearch()">查询</span>
+					<span  class="btn btn-an btn-green-bule" (click)="addsearch()"  >查询</span>
 					<span  class="btn btn-an btn-green" (click)="addData()" >刷新</span>
 			</div>
 		</div>
@@ -92,6 +92,7 @@
 				<p class="center-p" *ngIf="car[cols.field]==3"  >已停用</p>
 				<p class="center-p" *ngIf="car[cols.field]==4"  >可激活</p>
 				<p class="center-p" *ngIf="car[cols.field]==5"  >失效</p>
+				<p class="center-p" *ngIf="car[cols.field]==6"  >作废</p>
 				<!--<p class="center-p">{{car[cols.field] }}</p>-->
 			</ng-template>
 		</p-column>
