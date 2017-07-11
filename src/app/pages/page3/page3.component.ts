@@ -101,7 +101,7 @@ cities1=[];
 		console.log('Selected value is:', value);
 	}
  
-  	cars =[]
+  	cars:any =[]
 	selectedCars=[];
 	searchdata;  
 
