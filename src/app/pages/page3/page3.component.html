@@ -88,7 +88,10 @@
 		</p-column>
 		<p-column field="status" header="状态">
 			<ng-template let-cols let-car="rowData" pTemplate="body">
-				<p class="center-p">{{car[cols.field] }}</p>
+				<p class="center-p" *ngIf="car[cols.field]==2">已激活</p>
+				<p class="center-p" *ngIf="car[cols.field]==3">已停用</p>
+				<p class="center-p" *ngIf="car[cols.field]==4">可激活</p>
+				<p class="center-p" *ngIf="car[cols.field]==5">失效</p>
 			</ng-template>
 		</p-column>
 		<p-column field="time" header="到期时间">

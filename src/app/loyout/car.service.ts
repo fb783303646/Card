@@ -10,7 +10,7 @@ export class CarService {
 
   constructor(private http: Http) { }
 
-  getCarsSmall(keyWord?:string,stutas?:number){
+  getCarsSmall(keyWord?:string,status?:any){
         return this.http
         .get('/assets/data/cars.json')
         .map(res=>{
@@ -20,10 +20,15 @@ export class CarService {
                  return  x.ICCId.indexOf(keyWord) != -1 || x.mian.indexOf(keyWord) != -1
               })
              }
-             if(!!stutas){
-               result = result.filter(x=>{
-                 return  x.status.indexOf(stutas) != -1
-              })
+             
+             if(!!status){
+
+                result = result.filter(x=>{
+                  if(status.id===1){
+                      return x;
+                  }
+                  return  x.status.indexOf(status.id) != -1
+                })
              }
              return result
         })

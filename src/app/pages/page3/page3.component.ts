@@ -11,15 +11,44 @@ import {CarService} from '../../loyout/car.service'
 export class Page3Component implements OnInit {
 
 cities1=[];
-  cities2=[];
-  cities3=[];
-  cities4=[];
-  cities5=[];
-  selectedCity1: any;	
-  selectedCity2: any;
-  selectedCity3: any;
-  selectedCity4: any;
-  selectedCity5: any;
+	cities2=[];
+	cities3=[];
+	cities4=[];
+	cities5=[];
+	selectedCity1: any;	
+	selectedCity2: any;
+	selectedCity3: any;
+	selectedCity4: any;
+	selectedCity5: any;
+
+	display: boolean = false;
+	dis: boolean = false;
+	isflow:boolean = false;
+	ispopup:boolean = false;
+	istransfer:boolean = false;
+	Unbundling:boolean = false;
+	indexList:any =  {
+		ICCId: "",
+		mian: "",
+		nbomer: '',
+		liulang: '',
+		yiyong:'',
+		status:"",
+		time:"",
+		beizhu:""
+	};
+
+	cars:any =[]
+	selectedCars=[];
+	searchdata;  
+
+	kaNmbers = []
+	Remarks:any;
+
+	msgs;
+	PhoneNumber:string;
+
+
   constructor(private carService: CarService) { }
   
   ngOnInit() {
@@ -90,67 +119,22 @@ cities1=[];
 
   }
 
-  	public items:Array<any> = [
-		{id:'1',text:'Amsterdam'}, 
-		{id:'2',text:'Antwerp'},
-		{id:'3',text:'Athens'}
-	];
-	private value:any = {};
-
-	public selected(value:any):void {
-		console.log('Selected value is:', value);
-	}
- 
-  	cars:any =[]
-	selectedCars=[];
-	searchdata;  
-
     addData(){
     	this.carService.getCarsSmall().then(cars => this.cars = cars);
     }
 
-	addsearch(){
+	async addsearch(){
+
 		if(this.searchdata != undefined){
-			let len = this.cars.length;
-			let data = this.cars;
-			this.cars=[];
-			for(var i=0;i<len;i++){
-				for(var j=1;j<data[i].ICCId.length;j++){
-					if(!data[i].ICCId[j].indexOf(this.searchdata)){
-						this.cars.push(data[i])
-					}
-				}
-			}
+			this.cars = await this.carService.getCarsSmall(this.searchdata,this.selectedCity1);
 		}
+
     }
-
-	display: boolean = false;
-	dis: boolean = false;
-	isflow:boolean = false;
-	ispopup:boolean = false;
-	istransfer:boolean = false;
-	Unbundling:boolean = false;
-	indexList:any =  {
-		ICCId: "",
-		mian: "",
-		nbomer: '',
-		liulang: '',
-		yiyong:'',
-		status:"",
-		time:"",
-		beizhu:""
-	};
-
-	kaNmbers = []
-	Remarks:any;
 
     showDialog(e) {
         this.display = true;
 		this.indexList = e;
     }
-
-	msgs;
-	PhoneNumber:string;
 
 	SendSms(){
 
@@ -176,7 +160,6 @@ cities1=[];
 		this.istransfer = false;
 		this.Unbundling = false;
 	}
-
 
 	options = {
 		title : {
@@ -234,6 +217,7 @@ cities1=[];
 	editfuSubmit(){
 		this.selectedCars=[];
 		this.ispopup = false;
+
 	}
 	transferfn(){
 		if(this.selectedCars!=undefined && this.selectedCars.length>=1){
