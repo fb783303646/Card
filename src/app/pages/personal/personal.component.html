@@ -49,7 +49,7 @@
 				<span>运营商</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5" [style]="{'width':'100%'}" placeholder="选择运营商" ></p-dropdown>
+				<p-dropdown [options]="operatorArry" [(ngModel)]="operatorSelect" [style]="{'width':'100%'}" placeholder="选择运营商" ></p-dropdown>
 		</div>
 	</div>
 	<div class="row pad16 ">
@@ -57,7 +57,7 @@
 				<span>卡套餐选择</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5" [style]="{'width':'100%'}" placeholder="选择卡套餐"  ></p-dropdown>
+				<p-dropdown [options]="packageArry" [(ngModel)]="packageSelects" [style]="{'width':'100%'}" placeholder="选择卡套餐"  ></p-dropdown>
 		</div>
 	</div>
 	<div class="row pad16 ">
@@ -65,7 +65,7 @@
 				<span>服务周期</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5"  [style]="{'width':'100%'}" placeholder="选择服务周期" ></p-dropdown>
+				<p-dropdown [options]="cycleArry" [(ngModel)]="cycleSelect"  [style]="{'width':'100%'}" placeholder="选择服务周期" ></p-dropdown>
 		</div>
 	</div>
 	
