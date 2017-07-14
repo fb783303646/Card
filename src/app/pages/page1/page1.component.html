@@ -1,6 +1,6 @@
-<div class="row " style="padding:15px 0;">
-	<div class="col-md-6">
-		<h5 >更多详情></h5>
+<div class="row hd-title">
+	<div class="col-md-12">
+		<h5>更多详情</h5>
 	</div>
 </div>
  <div class="row placeholders">
@@ -70,7 +70,7 @@
 
   </div>
 <div>
-	<p-dataTable #dt exportFilename="selectedCars"  [(value)]="cars"  [rows]="10" [totalRecords]="totalRecords" [(selection)]="selectedCars"  [paginator]="true" [headerCheckboxToggleAllPages]="true"   >
+	<p-dataTable #dt exportFilename="selectedCars"  [(value)]="cars"  [rows]="10"  [(selection)]="selectedCars"  [paginator]="true" [headerCheckboxToggleAllPages]="true"   >
 		
 		<p-column [style]="{'width':'38px','padding':'10px'}" selectionMode="multiple"></p-column>
 		<p-column field="ICCId" header="ICCID"></p-column>

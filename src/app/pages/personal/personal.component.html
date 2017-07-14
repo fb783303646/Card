@@ -1,0 +1,81 @@
+<div class="row hd-title" >
+	<div class="col-md-12">
+		<h5 >个人配置</h5>
+	</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+       <span class="btn btn-an btn-green-bule fr" (click)="NewlyBuild()" ><em class="glyphicon glyphicon-plus"></em>新建</span> 
+	</div>
+	<div class="col-md-12 pad16">
+		<p-dataTable [value]="Packages"  [paginator]="true" [rows]="10" >
+			<p-column field="package" header="卡套餐">
+				<ng-template let-cols let-car="rowData" pTemplate="body">
+					<p class="center-p" >{{car[cols.field]}}</p>
+				</ng-template>
+			</p-column>
+			<p-column field="renewalFee" header="续费价格(元)">
+				<ng-template let-cols let-car="rowData" pTemplate="body">
+					<p class="center-p" >{{car[cols.field]}}</p>
+				</ng-template>
+			</p-column>
+			<p-column field="cycle" header="服务周期(周)">
+				<ng-template let-cols let-car="rowData" pTemplate="body">
+					<p class="center-p" >{{car[cols.field]}}</p>
+				</ng-template>
+			</p-column>
+			<p-column field="operator" header="运营商">
+				<ng-template let-cols let-car="rowData" pTemplate="body">
+					<p class="center-p" >{{car[cols.field]}}</p>
+				</ng-template>
+			</p-column>
+			<p-column field="operator" header="操作">
+				<ng-template let-cols let-car="rowData" pTemplate="body">
+					<p class="center-p" >
+						<i class="btn btn-an btn-green">编辑</i>
+						<i class="btn btn-an btn-red">删除</i>
+					</p>
+				</ng-template>
+			</p-column>
+		</p-dataTable> 
+	</div>		
+	 
+</div>
+
+<p-dialog   [(visible)]="isNewCreate" modal="modal" width="600" [responsive]="true" >
+	<p-header>新建个人配置</p-header>
+	<div class="row pad16 ">
+		<div class="col-md-4 rowLitst">
+				<span>运营商</span>
+		</div>
+		<div class="col-md-8">
+				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5" [style]="{'width':'100%'}" placeholder="选择运营商" ></p-dropdown>
+		</div>
+	</div>
+	<div class="row pad16 ">
+		<div class="col-md-4 rowLitst">
+				<span>卡套餐选择</span>
+		</div>
+		<div class="col-md-8">
+				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5" [style]="{'width':'100%'}" placeholder="选择卡套餐"  ></p-dropdown>
+		</div>
+	</div>
+	<div class="row pad16 ">
+		<div class="col-md-4 rowLitst">
+				<span>服务周期</span>
+		</div>
+		<div class="col-md-8">
+				<p-dropdown [options]="cities5" [(ngModel)]="selectedCity5"  [style]="{'width':'100%'}" placeholder="选择服务周期" ></p-dropdown>
+		</div>
+	</div>
+	
+	<div class="row pad16 ">
+		<div class="col-md-4 rowLitst">
+				<span>续费价格</span>
+		</div>
+		<div class="col-md-8">
+				<input type="text" pInputText style="width: 100%;" placeholder="输入金额（元）" />
+		</div>
+	</div>
+	<span  class="btn btn-an btn-green-bule btn-submit" >保存</span>
+</p-dialog>

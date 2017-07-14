@@ -3,13 +3,13 @@ import {AppComponent } from './app.component';
 import { LoyoutComponent } from './loyout/loyout.component'
 
 
-export const appRoutes=[
+export const appRoutes = [
  //     {
  //     	path: '',
  //    	component: LoyoutComponent,
  //     },
-	//  { 
-	//  	path: 'data', 
+	//  {
+	//  	path: 'data',
 	//  	loadChildren: './loyout/loyout.module#LoyoutModule'
 	// },
 ];
