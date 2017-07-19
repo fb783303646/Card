@@ -1,1 +1,10 @@
 .rowLitst{height:30px;line-height: 30px;}
+
+:host /deep/ .ui-growl {
+  position: fixed;
+  right: 16px;
+  top: 62px;
+}
+:host /deep/ .ui-widget-content{
+  border: none;
+}

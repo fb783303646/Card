@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-       <span class="btn btn-an btn-green-bule fr" (click)="NewlyBuild()" ><em class="glyphicon glyphicon-plus"></em>新建</span> 
+       <span class="btn btn-an btn-green-bule fr" (click)="NewlyBuild(NewTitle)" ><em class="glyphicon glyphicon-plus"></em>新建</span> 
 	</div>
 	<div class="col-md-12 pad16">
 		<p-dataTable [value]="Packages"  [paginator]="true" [rows]="10" >
@@ -30,10 +30,10 @@
 				</ng-template>
 			</p-column>
 			<p-column field="operator" header="操作">
-				<ng-template let-cols let-car="rowData" pTemplate="body">
+				<ng-template let-car="rowData" pTemplate="body">
 					<p class="center-p" >
-						<i class="btn btn-an btn-green">编辑</i>
-						<i class="btn btn-an btn-red">删除</i>
+						<i class="btn btn-an btn-green" (click)="NewlyBuild(configTitle,car)" >编辑</i>
+						<i class="btn btn-an btn-red" (click)="confirm2(car)" >删除</i>
 					</p>
 				</ng-template>
 			</p-column>
@@ -43,13 +43,13 @@
 </div>
 
 <p-dialog   [(visible)]="isNewCreate" modal="modal" width="600" [responsive]="true" >
-	<p-header>新建个人配置</p-header>
+	<p-header>{{headtitle}}</p-header>
 	<div class="row pad16 ">
 		<div class="col-md-4 rowLitst">
 				<span>运营商</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="operatorArry" [(ngModel)]="operatorSelect" [style]="{'width':'100%'}" placeholder="选择运营商" ></p-dropdown>
+				<p-dropdown [options]="operatorArry" [(ngModel)]="form.operatorSelect" [style]="{'width':'100%'}" placeholder="选择运营商" ></p-dropdown>
 		</div>
 	</div>
 	<div class="row pad16 ">
@@ -57,7 +57,7 @@
 				<span>卡套餐选择</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="packageArry" [(ngModel)]="packageSelects" [style]="{'width':'100%'}" placeholder="选择卡套餐"  ></p-dropdown>
+				<p-dropdown [options]="packageArry" [(ngModel)]="form.packageSelects" [style]="{'width':'100%'}" placeholder="选择卡套餐" scrollHeight="120px"  ></p-dropdown>
 		</div>
 	</div>
 	<div class="row pad16 ">
@@ -65,7 +65,7 @@
 				<span>服务周期</span>
 		</div>
 		<div class="col-md-8">
-				<p-dropdown [options]="cycleArry" [(ngModel)]="cycleSelect"  [style]="{'width':'100%'}" placeholder="选择服务周期" ></p-dropdown>
+				<p-dropdown [options]="cycleArry" [(ngModel)]="form.cycleSelect"  [style]="{'width':'100%'}" placeholder="选择服务周期" scrollHeight="100px" ></p-dropdown>
 		</div>
 	</div>
 	
@@ -74,8 +74,17 @@
 				<span>续费价格</span>
 		</div>
 		<div class="col-md-8">
-				<input type="text" pInputText style="width: 100%;" placeholder="输入金额（元）" />
+				<input type="text" pInputText style="width: 100%;" [(ngModel)]="form.renewalFee"  placeholder="输入金额（元）" />
 		</div>
 	</div>
-	<span  class="btn btn-an btn-green-bule btn-submit" >保存</span>
+	<span  class="btn btn-an btn-green-bule btn-submit" (click)="save()" >保存</span>
 </p-dialog>
+
+<p-growl [(value)]="msgs" life='5000' ></p-growl>
+
+<p-confirmDialog #cd>
+    <p-footer>
+        <button type="button" pButton  label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton  label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

@@ -17,7 +17,12 @@ import {
   InputTextareaModule,
   PanelMenuModule,
   MessagesModule,
-  GrowlModule
+  GrowlModule,
+  ConfirmDialogModule,
+  ConfirmationService,
+  TabViewModule,
+  CalendarModule,
+  CheckboxModule
 } from 'primeng/primeng';
 
 
@@ -53,7 +58,11 @@ import { StatisticalComponent } from '../pages/statistical/statistical.component
     InputTextModule,
     InputTextareaModule,
     MessagesModule,
-    GrowlModule
+    GrowlModule,
+    ConfirmDialogModule,
+    TabViewModule,
+    CalendarModule,
+    CheckboxModule
   ],
   declarations: [
     LoyoutComponent,
@@ -66,6 +75,6 @@ import { StatisticalComponent } from '../pages/statistical/statistical.component
     EnterpriseComponent,
     StatisticalComponent
   ],
-  providers: [CarService]
+  providers: [CarService, ConfirmationService]
 })
 export class LoyoutModule { }

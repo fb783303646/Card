@@ -1,5 +1,500 @@
-<div class="row hd-title" >
-	<div class="col-md-12">
-		<h5 >统计分析</h5>
-	</div>
+<div class="row hd-title">
+  <div class="col-md-12">
+    <h5>统计分析</h5>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <p-tabView>
+      <p-tabPanel header="分润概况">
+        <h4 class="hd-nav">分润概况</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="bor money-box">
+              <p class="moner-info">分润金额</p>
+              <p class="money-nmb">1000元</p>
+              <a href="javascript:;" class="nbtn-info btn-postal" (click)="postalfn()">提现</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bor week">
+              <div class=" col-hd">
+                <div class="col-md-6 week-info">本周</div>
+                <div class="col-md-6 nbtn-right">
+                  <a href="javascript:;" class="nbtn-info" (click)="Viewdetails()">查看明细</a>
+                </div>
+              </div>
+              <div class="info-box">
+                <p class="">交易单数:0</p>
+                <p class="">分润金额:0</p>
+                <p class="">交易用户数:0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bor week">
+              <div class="col-hd">
+                <div class="col-md-6 week-info">上周</div>
+                <div class="col-md-6 nbtn-right">
+                  <a href="javascript:;" class="nbtn-info" (click)="Viewdetails()">查看明细</a>
+                </div>
+              </div>
+              <div class="info-box">
+                <p class="">交易单数:0</p>
+                <p class="">分润金额:0</p>
+                <p class="">交易用户数:0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="mainMap1" style="height:400px;"></div>
+        <div id="mainMap2" style="height:400px;"></div>
+      </p-tabPanel>
+      <p-tabPanel header="分润明细">
+        <h4 class="hd-nav">分润明细</h4>
+        <div class="row" style="padding-bottom: 16px;padding-top:16px;">
+          <div class="col-md-6">
+            <div class="form-inline-box">
+              <span>选择时间：</span>
+              <p-calendar [showIcon]="true" [(ngModel)]="date1" dateFormat="yy-mm-dd"></p-calendar><span style="margin-left:35px;padding-right:10px;">至</span>
+              <p-calendar [showIcon]="true" [(ngModel)]="date2" dateFormat="yy-mm-dd"></p-calendar><span style="margin-left:35px"></span>
+              <span class="btn btn-an btn-green-bule" (click)="searchfu()">查询</span>
+              <span class="btn btn-an btn-green">导出</span>
+            </div>
+          </div>
+
+          <div class="col-md-12 pad16">
+            <p-dataTable [value]="Detailed" [paginator]="true" [rows]="20">
+              <p-column field="time" header="时间范围">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="交易笔数">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="cycle" header="分润金额">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="operator" header="交易金额">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="operator" header="更多">
+                <ng-template let-car="rowData" pTemplate="body">
+                  <p class="center-p" (click)="MoveDialog(car)"><span class="glyphicon glyphicon-search"></span></p>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="提限记录">
+        <div class="row" style="padding: 30px 0 !important;margin-bottom: 20px;">
+          <div class="col col-sm-6">
+            <img class="conpany-img" src="http://p.cmpyun.com/images/ion10.png">
+            <div class="conpany-text">
+              <div>公司名：深圳市微科通讯设备有限公司</div>
+              <div>登录帐号：13603012337</div>
+              <div>联系电话：13603012337</div>
+            </div>
+          </div>
+          <div class="col col-sm-6">
+            <div class="bank-border">
+              <div class="bank-text" style="line-height: 20px;">
+                <img class="bank-img" src="http://p.cmpyun.com/images/ion10.png">
+                <span></span>
+                <span></span>|
+                <span>储蓄卡</span>
+              </div>
+              <div class="bank-number" id="payAcc"></div>
+            </div>
+            <div class="bank-btn">
+              <button class="btn" id="changePayAccountName" (click)="changBank()">更换</button>
+            </div>
+          </div>
+        </div>
+        <h4 class="hd-nav">提限记录</h4>
+
+        <div class="row" style="padding-bottom: 16px;padding-top:16px;">
+          <div class="col-md-6">
+            <div class="form-inline-box">
+              <span>选择时间：</span>
+              <p-calendar [(ngModel)]="date1" [showIcon]="true" dateFormat="yy-mm-dd"></p-calendar><span style="margin-left:35px;padding-right:10px;">至</span>
+              <p-calendar [(ngModel)]="date2" [showIcon]="true" dateFormat="yy-mm-dd"></p-calendar><span style="margin-left:35px"></span>
+              <span class="btn btn-an btn-green-bule" (click)="searchfu()">查询</span>
+              <span class="btn btn-an btn-green">导出</span>
+            </div>
+          </div>
+
+          <div class="col-md-12 pad16">
+            <p-dataTable [value]="Detailed" [paginator]="true" [rows]="20">
+              <p-column field="time" header="提现时间">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="提现路径">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="cycle" header="提现金额(元)">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="operator" header="提现状态">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="分润配置">
+        <div class="row" *ngIf="isShow">
+          <div class="col-md-12">
+            <h4 class="hd-nav ">分润配置</h4>
+          </div>
+          <div class="col-md-12 pad16">
+            <p-dataTable [value]="Detailed" [paginator]="true" [rows]="10">
+              <p-column field="id" header="客户编号">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="name" header="客户名称">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="operator" header="公司名称">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="分润金额">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="operator" header="操作">
+                <ng-template let-car="rowData" pTemplate="body">
+                  <p class="center-p" (click)="detailedfn()">
+                    <i class="btn btn-an btn-green">修改</i>
+                  </p>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+        </div>
+        <div class="row" *ngIf="!isShow">
+
+          <div class="col-md-12 pad16">
+            <div class="pab16 black-btn">
+              <i class="btn btn-an btn-green" (click)="detailedfn()">返回上一级</i>
+            </div>
+            <p-dataTable [value]="Detailed" [paginator]="true" [rows]="10">
+              <p-column field="product" header="销售品">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="销售价">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="bili" header="可分润比例">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="stutas" header="是否授权">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p" *ngIf="car[cols.field]=='true'">是</p>
+                  <p class="center-p" *ngIf="car[cols.field]=='false'">否</p>
+                </ng-template>
+              </p-column>
+              <p-column field="bili" header="分润比例">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="分润金额">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="下级零售价">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p">{{car[cols.field]}}</p>
+                </ng-template>
+              </p-column>
+              <p-column field="stutas" header="手机端上架">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p" *ngIf="car[cols.field]=='true'">是</p>
+                  <p class="center-p" *ngIf="car[cols.field]=='false'">否</p>
+                </ng-template>
+              </p-column>
+              <p-column field="renewalFee" header="操作">
+                <ng-template let-cols let-car="rowData" pTemplate="body">
+                  <p class="center-p" (click)="CreateNewfun(car)">
+                    <i class="btn btn-an btn-green">修改</i>
+                  </p>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+
+<p-dialog [(visible)]="isPostal" modal="modal" width="400" [responsive]="true">
+  <p-header>提现</p-header>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>提现方式</span>
+    </div>
+    <div class="col-md-8">
+      <p-dropdown [options]="modeArry" [(ngModel)]="mode" [style]="{'width':'100%'}"></p-dropdown>
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>提现金额</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="money" placeholder="请输入提取金额" />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>验证码</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width:126px" placeholder="请输入验证码" [(ngModel)]="Verification" /><span class="btn Ver-btn">发送验证码</span>
+    </div>
+  </div>
+  <span class="btn btn-an btn-green-bule btn-submit" (click)="submitfu()">提交</span>
+</p-dialog>
+
+
+<p-dialog [(visible)]="isDetailed" modal="modal" width="800" [responsive]="true">
+  <p-header>信息</p-header>
+  <div class="row">
+    <div class="col-md-12">
+      <p-dataTable [value]="Detailed && Detailed.slice(0,10)">
+        <p-column field="id" header="交易单号">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+        <p-column field="time" header="交易时间">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+        <p-column field="name" header="用户昵称">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+        <p-column field="id" header="ICCID号">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+        <p-column field="renewalFee" header="消费金额">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+        <p-column field="renewalFee" header="分润金额">
+          <ng-template let-cols let-car="rowData" pTemplate="body">
+            <p class="center-p">{{car[cols.field]}}</p>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="display" modal="modal" width="800" [responsive]="true">
+  <p-header>分润明细</p-header>
+
+  <div class="popup-box">
+    <div class="row">
+      <div class="col col-sm-6">刷新时间：{{indexList.time}}</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">ICCID:{{indexList.id}}</div>
+      <div class="col col-sm-6">订单编号:LYCMP2017042810281971612453</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">业务号码:{{indexList.renewalFee}}</div>
+      <div class="col col-sm-6">激活时间:indexList.time</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">卡片尺寸:贴片5*6</div>
+      <div class="col col-sm-6">流量共享:独享</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">主套餐:indexList.mian</div>
+      <div class="col col-sm-6">开卡方式:插卡激活</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">本月可用量:30M</div>
+      <div class="col col-sm-6">用户绑定信息:</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">本月已用量:0M</div>
+      <div class="col col-sm-6">卡片状态:indexList.status</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">流量所占百分比:0%</div>
+      <div class="col col-sm-6">IMSI:460040126037296</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">本月短信可用量:10</div>
+      <div class="col col-sm-6">本月短信已用量:0</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">备注:indexList.beizhu</div>
+      <div class="col col-sm-6"> 卡片归属:深圳市微科通讯设备有限公司[13603012337]</div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-6">项目名称:33333333</div>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="isNewbank" modal="modal" width="400" [responsive]="true">
+  <p-header>修改提现账户信息</p-header>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>银行名称</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="money" placeholder="请填写开户分行" />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>开户分行</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="money" placeholder="请填写开户分行" />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>银行卡号</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="money" placeholder="请填写银行卡号" />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>持卡人</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="money" placeholder="请填写持卡人" />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>验证码</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width:126px" placeholder="请输入验证码" [(ngModel)]="Verification" /><span class="btn Ver-btn">发送验证码</span>
+    </div>
+  </div>
+  <span class="btn btn-an btn-green-bule btn-submit" (click)="submitfu()">提交</span>
+</p-dialog>
+
+
+
+
+<p-dialog [(visible)]="isCreateNew" modal="modal" width="400" [responsive]="true">
+  <p-header>修改产品配置</p-header>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>销售品名称</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.product"  />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>销售价</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.renewalFee"  />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>可分润比例</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.bili"  />
+    </div>
+  </div>
+
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>分润比例</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.bili"  />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>分润金额</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.renewalFee"  />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-4 rowLitst">
+      <span>下级零售价</span>
+    </div>
+    <div class="col-md-8">
+      <input type="text" pInputText style="width: 100%;" [(ngModel)]="FromData.renewalFee"  />
+    </div>
+  </div>
+  <div class="row pad16 ">
+    <div class="col-md-1">
+     <p-checkbox [(ngModel)]="FromData.checked1" binary="true"></p-checkbox>
+    </div>
+    <div class="col-md-5 rowLitst">
+      <span>是否授权</span>
+    </div>
+    <div class="col-md-1">
+     <p-checkbox [(ngModel)]="FromData.checked2" binary="true"></p-checkbox>
+    </div>
+    <div class="col-md-5 rowLitst">
+      <span>手机端上架</span>
+    </div>
+  </div>
+ 
+  <span class="btn btn-an btn-green-bule btn-submit" (click)="submitfu()">保存</span>
+</p-dialog>

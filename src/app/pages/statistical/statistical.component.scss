@@ -1,0 +1,84 @@
+ :host /deep/ .ui-tabview-nav {border:none;}
+:host /deep/ .ui-tabview .ui-tabview-nav{padding: 0;}
+:host /deep/ .ui-corner-top{border-top-left-radius:0;border-top-right-radius: 0;}
+:host /deep/ .ui-tabview .ui-tabview-nav li{margin-right:10px;}
+:host /deep/ .ui-tabview .ui-tabview-nav > li.ui-state-default{border:1px solid #ddd;}
+:host /deep/ .ui-tabview .ui-tabview-nav > li.ui-state-default:hover{background:#23c6c8;border:1px solid #23c6c8;}
+:host /deep/ .ui-tabview .ui-tabview-nav > li.ui-state-default:hover a{color: #fff;}
+:host /deep/  .ui-tabview .ui-tabview-nav > li.ui-state-active{background:#23c6c8;border:1px solid #23c6c8;}
+:host /deep/ .ui-tabview .ui-tabview-nav > li.ui-state-active a{color: #fff;}
+:host /deep/ .ui-tabview .ui-tabview-panel{padding-left: 0;padding-right: 0;}
+:host /deep/ .form-inline-box .ui-corner-all{padding: 4px;}
+:host /deep/ .form-inline-box .ui-datepicker{padding: 0;}
+:host /deep/ .ui-dialog{padding: 0;}
+:host /deep/  .ui-widget-content{color: gray}
+
+.hd-nav{margin: 0;padding: 15px 0;border-bottom:1px solid #ddd;}
+.bor{border: 1px solid #ddd;margin-top:16px;height:150px;}
+.nbtn-info{border:1px solid #5dc161;display: inline-block;padding: 4px 0;font-family: '微软雅黑';color: #5dc161;}
+.nbtn-info:hover{background: #5dc161;color: #fff;text-decoration:none;}
+.money-box{
+  vertical-align:middle;
+  text-align: center;
+  .moner-info{padding-top: 15px;}
+  .money-nmb{font-size: 30px;}
+  .btn-postal{width: 200px;}
+}
+.week-info{height:34px;line-height: 34px;font-size: 18px;}
+.week{
+  .col-hd{height: 44px;padding: 6px 0;border-bottom:1px solid #5dc161;}
+  .nbtn-right{
+    text-align: right;
+    .nbtn-info{padding-left: 20px;padding-right: 20px;}
+  }
+}
+.info-box{
+  padding-left: 40px;
+  padding-top: 16px;
+}
+.conpany-img{
+    margin: 0 10px;
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+  .conpany-text{
+    line-height: 33px;
+    height: 33px;
+    color: #333;
+    font-size: 14px;
+    float: left;
+  }
+  .bank-border{
+    padding: 15px 10px 10px 10px;
+    border: 3px solid #e94a35;
+    width: 280px;
+    height: 125px;
+    margin: 0 auto;
+    float: left;
+  }
+  .bank-text{
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+  }
+  .bank-img{
+    width: 30px;
+    height: 30px;
+  }
+  .bank-btn{
+    float: left;
+    margin-left: 10px;
+    button{
+      background: #fff !important;
+      border: 1px solid #dbdbdb !important;
+    }
+  }
+  .Ver-btn{border:1px solid #ddd;margin-left: 4px;padding: 5px 12px;font-family: '微软雅黑'}
+  .Ver-btn:hover{background:#23c6c8;color: #fff;border:1px solid #23c6c8;}
+
+  .popup-box {
+    .col{line-height: 30px;}
+  }
+
+  .black-btn .btn{font-style: normal;padding: 4px 12px;}

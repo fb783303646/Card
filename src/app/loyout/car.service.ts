@@ -34,11 +34,33 @@ export class CarService {
       .toPromise();
   }
 
-  getPackageSmall() {
+  getPackageSmall(data?: any) {
     return this.http
       .get('/assets/data/Package.json')
       .map(res => {
-        const result = res.json();
+        let result = res.json();
+        if (!!data) {
+          result = result.filter(x => {
+            if ( x.id !== data.id) {
+              return x;
+            }
+          });
+        }
+        return result;
+      })
+      .toPromise();
+  }
+  getPackageTime(startTime?: any, endTime?: any) {
+    return this.http
+      .get('/assets/data/Package.json')
+      .map(res => {
+        let result = res.json();
+        result = result.filter((val, i) => {
+           const times = new Date(val.time).getTime();
+            if (times >= startTime && endTime >= times ) {
+              return val;
+            }
+        });
         return result;
       })
       .toPromise();

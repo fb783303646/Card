@@ -69,6 +69,12 @@ export class Page1Component implements OnInit {
       title: {
         text: '30天的流量数据'
       },
+      grid: {
+        left: '0%',
+        right: '1%',
+        bottom: '3%',
+        containLabel: true
+      },
       tooltip: {
         trigger: 'axis'
       },
@@ -157,6 +163,12 @@ export class Page1Component implements OnInit {
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b}: {c} ({d}%)'
+      },
+      grid: {
+        left: '0%',
+        right: '1%',
+        bottom: '3%',
+        containLabel: true
       },
       series: [
         {
