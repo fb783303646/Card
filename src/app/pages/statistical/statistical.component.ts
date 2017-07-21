@@ -177,6 +177,7 @@ export class StatisticalComponent implements OnInit, AfterViewInit {
   }
 
   CreateNewfun(data) {
+    console.log(data);
     this.FromData = {
       product: data.product,
       bili: data.bili,
